@@ -1,4 +1,4 @@
-import Cocacolalogo from "../../assets/partners/Cocacolalogo.png";
+import Cocacolalogo from "../../assets/partners/cocacolalogo.png";
 import chev from "../../assets/partners/chev.png";
 import oppo from "../../assets/partners/oppo.png";
 import orange from "../../assets/partners/orange.png";
