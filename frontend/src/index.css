@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto+Slab:wght@100..900&display=swap");
+@import "tailwindcss";
+@plugin "daisyui/index.js";
+
+@theme {
+  --font-Slab: "Roboto Slab", serif;
+  --font-hand: "Caveat", cursive;
+  --font-Merr: "Merriweather", serif;
+}
