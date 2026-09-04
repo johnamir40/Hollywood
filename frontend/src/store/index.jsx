@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import axios from "axios";
 
-export const domain = "http://localhost:1337";
-
+// export const domain = "http://localhost:1337";
+export const domain = import.meta.env.VITE_STRAPI_URL;
 const statusMap = {
   Available: "available",
   Reserved: "reserved",
