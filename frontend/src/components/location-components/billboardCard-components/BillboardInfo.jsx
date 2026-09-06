@@ -39,67 +39,71 @@ export default function BillboardInfo({ location, onSelect }) {
   const availableDate = formatAvailableDate(location.availableDate);
 
   return (
-    <button type="button" onClick={onSelect} className="relative text-left">
-      {/* Card Number */}
+    <button
+      type="button"
+      onClick={onSelect}
+      className="relative flex w-full flex-1 flex-col bg-white p-3 text-left sm:p-4"
+    >
+      {/* Billboard Number */}
       {location.number != null && (
-        <div
-          className="pointer-events-none absolute right-0 top-0 z-10 flex h-16 w-18.5 items-start justify-end bg-[#0a2d5d] pr-4 pt-3 text-white sm:h-18 sm:w-22 sm:pr-5 sm:pt-4"
-          style={{
-            clipPath: "polygon(34% 0, 100% 0, 100% 100%, 68% 100%)",
-          }}
-        >
-          <span className="text-base font-black leading-none sm:text-xl">
+        <div className="absolute right-0 top-0 z-10">
+          <div className="flex h-16 w-14 items-start justify-end bg-[#0b2d5c] px-3 pt-2 text-base font-bold text-white [clip-path:polygon(40%_0,100%_0,100%_100%,0_100%)] sm:h-20 sm:w-16 sm:text-lg">
             {location.number}
+          </div>
+        </div>
+      )}
+
+      {/* Title */}
+      <h3 className="pr-10 text-sm font-bold leading-5 text-[#0b1f3c] whitespace-normal wrap-break-word sm:pr-12 sm:text-base sm:leading-6">
+        {location.title}
+      </h3>
+
+      {/* Location */}
+      {location.location && (
+        <div className="mt-3 flex items-start gap-1.5 text-[10px] leading-4 text-slate-600 sm:text-xs sm:leading-5">
+          <FiMapPin className="mt-0.5 shrink-0 text-blue-600" />
+
+          <span className="whitespace-normal wrap-break-word">
+            {location.location}
           </span>
         </div>
       )}
 
-      <div className="p-3.5 sm:p-5">
-        {/* Title */}
-        <h3 className="line-clamp-2 pr-14 text-[15px] font-black leading-snug tracking-[-0.015em] text-[#0b1f3c] sm:pr-20 sm:text-lg lg:text-xl">
-          {location.title}
-        </h3>
+      {/* Size */}
+      {location.size && (
+        <p className="mt-3 text-[10px] leading-4 text-slate-500 sm:text-xs sm:leading-5">
+          {location.size}
+        </p>
+      )}
 
-        {/* Location */}
-        <div className="mt-3 flex items-start gap-1.5 pr-1 text-[10px] font-medium leading-4 text-slate-600 sm:text-xs sm:leading-5">
-          <FiMapPin className="mt-0.5 shrink-0 text-blue-600" />
+      {/* Status + Photos */}
+      <div className="mt-4 flex flex-wrap items-center gap-2">
+        {status && (
+          <span
+            className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-[9px] font-bold ring-1 ring-inset sm:px-2.5 sm:text-[10px] ${status.className}`}
+          >
+            {StatusIcon && <StatusIcon className="shrink-0" />}
 
-          <span className="line-clamp-3">{location.location}</span>
-        </div>
-
-        {/* Description / Size */}
-        {location.size && (
-          <p className="mt-2.5 line-clamp-2 text-[10px] leading-4 text-slate-500 sm:text-xs sm:leading-5">
-            {location.size}
-          </p>
+            {status.label}
+          </span>
         )}
 
-        {/* Status + Photos */}
-        <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:mt-4">
-          {status && StatusIcon && (
-            <span
-              className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-[9px] font-bold ring-1 ring-inset sm:px-2.5 sm:text-[10px] ${status.className}`}
-            >
-              <StatusIcon className="shrink-0" />
-              {status.label}
-            </span>
-          )}
-
-          {imageCount > 1 && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-[9px] font-bold text-blue-700 ring-1 ring-inset ring-blue-100 sm:px-2.5 sm:text-[10px]">
-              <FiImage />
-              {imageCount} photos
-            </span>
-          )}
-        </div>
-
-        {/* Available From */}
-        {availableDate && (
-          <p className="mt-2.5 text-[9px] font-semibold text-emerald-700 sm:text-[10px]">
-            Available from {availableDate}
-          </p>
+        {imageCount > 0 && (
+          <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-[9px] font-bold text-blue-600 ring-1 ring-inset ring-blue-100 sm:px-2.5 sm:text-[10px]">
+            <FiImage />
+            {imageCount} photo
+            {imageCount === 1 ? "" : "s"}
+          </span>
         )}
       </div>
+
+      {/* Available From */}
+      {availableDate && (
+        <p className="mt-3 text-[10px] font-semibold text-slate-500 sm:text-xs">
+          Available from{" "}
+          <span className="font-bold text-[#0b1f3c]">{availableDate}</span>
+        </p>
+      )}
     </button>
   );
 }

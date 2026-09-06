@@ -1,5 +1,13 @@
 import { useMemo, useState } from "react";
-import { FiFilter, FiMap, FiMapPin, FiNavigation, FiX } from "react-icons/fi";
+import {
+  FiFilter,
+  FiGrid,
+  FiList,
+  FiMap,
+  FiMapPin,
+  FiNavigation,
+  FiX,
+} from "react-icons/fi";
 
 import BillboardCard from "./BillboardCard";
 
@@ -44,6 +52,7 @@ export default function LocationExplorer({
   activeZone,
   onSelectZone,
 }) {
+  const [mobileColumns, setMobileColumns] = useState(2);
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedId, setSelectedId] = useState(null);
   const [mobileMapOpen, setMobileMapOpen] = useState(false);
@@ -135,7 +144,7 @@ export default function LocationExplorer({
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(380px,0.85fr)] lg:items-start">
           {/* Billboard Cards */}
           <div>
-            <div className="mb-4 flex items-center justify-between gap-4">
+            <div className="mb-4 flex items-center justify-between gap-3">
               <p className="text-sm font-semibold text-slate-600">
                 <span className="font-bold text-[#0b1f3c]">
                   {filteredLocations.length}
@@ -144,19 +153,53 @@ export default function LocationExplorer({
                 {filteredLocations.length === 1 ? "" : "s"}
               </p>
 
-              {activeZone !== "all" && (
-                <button
-                  type="button"
-                  onClick={() => onSelectZone("all")}
-                  className="text-xs font-bold text-blue-600 hover:text-blue-800"
-                >
-                  Clear zone
-                </button>
-              )}
-            </div>
+              <div className="flex items-center gap-2">
+                {/* Mobile view selector */}
+                <div className="flex rounded-lg border border-blue-100 bg-white p-1 md:hidden">
+                  <button
+                    type="button"
+                    onClick={() => setMobileColumns(1)}
+                    aria-label="Show one card per row"
+                    className={`flex h-8 w-8 items-center justify-center rounded-md transition ${
+                      mobileColumns === 1
+                        ? "bg-[#0b2d5c] text-white"
+                        : "text-slate-500 hover:bg-blue-50"
+                    }`}
+                  >
+                    <FiList />
+                  </button>
 
+                  <button
+                    type="button"
+                    onClick={() => setMobileColumns(2)}
+                    aria-label="Show two cards per row"
+                    className={`flex h-8 w-8 items-center justify-center rounded-md transition ${
+                      mobileColumns === 2
+                        ? "bg-[#0b2d5c] text-white"
+                        : "text-slate-500 hover:bg-blue-50"
+                    }`}
+                  >
+                    <FiGrid />
+                  </button>
+                </div>
+
+                {activeZone !== "all" && (
+                  <button
+                    type="button"
+                    onClick={() => onSelectZone("all")}
+                    className="text-xs font-bold text-blue-600 hover:text-blue-800"
+                  >
+                    Clear zone
+                  </button>
+                )}
+              </div>
+            </div>
             {filteredLocations.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-2">
+              <div
+                className={`grid gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-2 ${
+                  mobileColumns === 1 ? "grid-cols-1" : "grid-cols-2"
+                }`}
+              >
                 {filteredLocations.map((location) => (
                   <BillboardCard
                     key={location.id}
