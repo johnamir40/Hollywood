@@ -12,13 +12,27 @@ export default function ContactUs() {
         <h1 className="text-2xl md:text-3xl font-bold mt-5 mb-4">Via Phone</h1>
         <h1 className="text-gray-200 text-xl leading-relaxed">
           <span className="block">
-            <span className="font-bold">Tel:</span> 22694306
+            <a href="tel:22694306" className="hover:text-blue-400 transition">
+              <span className="font-bold">Tel:</span> 22694306
+            </a>
           </span>
           <span className="block">
-            <span className="font-bold">WhatsApp:</span> 01289172727
+            <a
+              href="https://wa.me/201289172727"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-green-400 transition"
+            >
+              <span className="font-bold">WhatsApp:</span> 01289172727
+            </a>
           </span>
           <span className="block">
-            <span className="font-bold">Email:</span> hollywood_adv@yahoo.com
+            <a
+              href="mailto:hollywood_adv@yahoo.com"
+              className="hover:text-blue-400 transition"
+            >
+              <span className="font-bold">Email:</span> hollywood_adv@yahoo.com
+            </a>
           </span>
         </h1>
       </div>
