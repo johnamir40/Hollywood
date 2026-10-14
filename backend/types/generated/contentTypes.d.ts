@@ -607,6 +607,7 @@ export interface ApiZoneZone extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::billboard.billboard'
     >;
+    billboardType: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -618,6 +619,7 @@ export interface ApiZoneZone extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     shortName: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'name'>;
+    sortOrder: Schema.Attribute.Integer;
     subtitle: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

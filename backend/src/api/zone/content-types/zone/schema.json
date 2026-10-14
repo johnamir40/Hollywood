@@ -40,6 +40,12 @@
       "relation": "oneToMany",
       "target": "api::billboard.billboard",
       "mappedBy": "zone"
+    },
+    "billboardType": {
+      "type": "string"
+    },
+    "sortOrder": {
+      "type": "integer"
     }
   }
 }

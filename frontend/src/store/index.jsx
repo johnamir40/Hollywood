@@ -91,7 +91,8 @@ export const useLocations = create((set) => ({
         axios.get(domain + "/api/zones?populate=image"),
 
         axios.get(
-          domain + "/api/billboards?populate[zone]=true&populate[images]=true",
+          domain +
+            "/api/billboards?populate[zone]=true&populate[images]=true&sort=cardNumber:asc",
         ),
       ]);
 
