@@ -1,1 +1,1 @@
-A company website showcasing billboard locations and film productions, with integrated WhatsApp support for seamless customer communication.
+A company website showcasing billboard locations with photos, one-click Google Maps navigation, film productions, and integrated WhatsApp communication.
